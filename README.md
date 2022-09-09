@@ -1,4 +1,4 @@
-# PyJack
+# PyJack &middot; [![wakatime](https://wakatime.com/badge/user/388335e0-bfff-4e5c-a120-484927d9382a/project/c6159c5f-d53b-4acd-88fe-1ae9fa6cb0d2.svg)](https://wakatime.com/badge/user/388335e0-bfff-4e5c-a120-484927d9382a/project/c6159c5f-d53b-4acd-88fe-1ae9fa6cb0d2)
 
 PyJack is a Python implementation of the classic game of Blackjack.
 
