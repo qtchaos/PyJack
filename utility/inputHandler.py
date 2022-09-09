@@ -46,8 +46,12 @@ def inputHandler(Text="", Save=False, fileName=""):
         viewBalance()
         return
 
-    if inputText == "set_bal" and dev:
-        setBalance()
+    if "set_bal" in inputText and dev:
+        x = inputText.split(" ")
+        if len(x) == 2:
+            setBalance(Amount=x[1])
+        else:
+            setBalance()
         return
 
     if inputText == "reset":
@@ -59,4 +63,3 @@ def inputHandler(Text="", Save=False, fileName=""):
 
     print("Command not found.")
     time.sleep(TIMEOUT)
-    return

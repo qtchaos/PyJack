@@ -3,13 +3,14 @@ from utility.clearConsole import clearConsole
 
 
 def loadAnimation():
-    i = 1
-    j = 10
-    empty_unicode = "⣀"
-    filled_unicode = "⣿"
-    while i < 11:
+    i = 0
+    j = 0
+    chars = ["/", "-", "\\"]
+    while i < 10:
+        i += 1
+        print(f"{chars[j]}\n")
+        j += 1
+        if j == 3:
+            j = 0
         time.sleep(0.1)
         clearConsole()
-        j -= 1
-        print(f"{i * filled_unicode}{j * empty_unicode}")
-        i += 1

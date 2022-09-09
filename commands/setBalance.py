@@ -5,10 +5,13 @@ from utility.dataBridge import *
 
 def setBalance(Internal=False, Amount=None):
     if Internal and Amount != None:
-        x = Amount
-        fileHandler(fileName="balance", Text=x)
+        fileHandler(fileName="balance", Text=Amount)
+    if Internal == False and Amount != None:
+        fileHandler(fileName="balance", Text=Amount)
+        print(f"Set balance to {Amount}.")
     else:
-        x = input("Specify amount. >")
+        x = int(input("Specify amount. >"))
         fileHandler(fileName="balance", Text=x)
         print(f"Set balance to {x}.")
-        time.sleep(TIMEOUT)
+
+    time.sleep(TIMEOUT)

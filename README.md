@@ -19,7 +19,7 @@ python main.py
 
 - **blackjack** - Starts the game of Blackjack.
 - **bal, balance, money** - View your current balance in the game.
-- **set_bal** - Allows you to set your balance in the game. **DEV REQUIRED**
+- **set_bal** _[int]_ - Allows you to set your balance in the game. **DEV REQUIRED**
 - **dev** - Enables developer mode.
 - **reset** - Resets all of your data.
 - **loadanim** - Previews the load animation.

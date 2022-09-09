@@ -5,6 +5,7 @@ from utility.clearConsole import clearConsole
 from commands.loadAnimation import loadAnimation
 from commands.viewBalance import viewBalance
 from commands.setBalance import setBalance
+from utility.balHandler import balHandler
 
 deck = [
     "Ace",
@@ -113,39 +114,35 @@ def mainCycle(hitOrStand, Player, Dealer):
 
 
 def winHandler(Player, Dealer, betAmount):
-    end = False
-    set_bal = True
-
     if stand:
         if Dealer < Player:
             print(f"You won {betAmount}!")
+            balHandler(False, betAmount)
         if Player < Dealer:
             print(f"The Dealer won!")
+            balHandler(True, betAmount)
         if Player == Dealer:
             print(f"You tied with the Dealer!")
-            set_bal = False
-        end = True
+        return True
 
     if Dealer == 21:
         print("Dealer has hit a Blackjack!")
-        end = True
+
     if Player == 21:
-        betAmount = betAmount * 2
         print(f"You hit a Blackjack and won {betAmount}!")
-        end = True
 
     if Dealer > 21:
-        betAmount = betAmount * 2
         print(f"The Dealer bust and you won {betAmount}!")
-        end = True
+
     if Player > 21:
         print("You bust!")
-        end = True
 
-    if set_bal:
-        setBalance(True, betAmount)
-
-    return end
+    if Player > 21 or Dealer == 21:  # Loss condition
+        balHandler(True, betAmount)
+        return True
+    if Dealer > 21 or Player == 21:  # Win condition
+        balHandler(False, betAmount)
+        return True
 
 
 def betHandler():
@@ -154,6 +151,7 @@ def betHandler():
     if x[0] == "y":
         betAmount = int(input("Enter bet amount >"))
         if betAmount > bal:
+            clearConsole()
             print("Bet amount exceeds balance.")
             return True, betAmount
     else:
