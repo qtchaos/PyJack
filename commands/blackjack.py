@@ -6,6 +6,7 @@ from commands.loadAnimation import loadAnimation
 from commands.viewBalance import viewBalance
 from commands.setBalance import setBalance
 from utility.balHandler import balHandler
+from utility.exitProgram import exitProgram
 
 deck = [
     "Ace",
@@ -147,9 +148,9 @@ def winHandler(Player, Dealer, betAmount):
 
 def betHandler():
     bal = viewBalance(True)
-    x = input("Do you want to bet? >").lower()
+    x = inputWrapper("Do you want to bet? >").lower()
     if x[0] == "y":
-        betAmount = int(input("Enter bet amount >"))
+        betAmount = int(inputWrapper("Enter bet amount >"))
         if betAmount > bal:
             clearConsole()
             print("Bet amount exceeds balance.")
@@ -169,13 +170,20 @@ def resetVars():
 
 
 def againHandler():
-    x = input("Do you want to play again? >").lower()
+    x = inputWrapper("Do you want to play again? >").lower()
     if x[0] == "y":
         clearConsole()
         resetVars()
         blackjack()
     else:
         time.sleep(TIMEOUT)
+
+
+def inputWrapper(Text):
+    try:
+        return input(Text)
+    except KeyboardInterrupt:
+        exitProgram()
 
 
 def blackjack():
@@ -198,7 +206,9 @@ def blackjack():
         print(f"Your total: {player}\nDealer total: {dealer}")
         print(divider)
 
-        (total, type) = mainCycle(input("Hit or Stand? >").lower(), player, dealer)
+        (total, type) = mainCycle(
+            inputWrapper("Hit or Stand? >").lower(), player, dealer
+        )
 
         if type == "Player":
             player = total
