@@ -198,7 +198,6 @@ def blackjack():
 
         print(f"Your deck: {player_cards}\nDealer's deck: {dealer_cards}")
         print(f"Your total: {player}\nDealer total: {dealer}")
-        print(stand)
         print(divider)
 
         (total, type) = mainCycle(input("Hit or Stand? >").lower(), player, dealer)
